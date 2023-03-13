@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+.hero {
+    height: 400px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.hero h1 {
+    color: #fff;
+    font-weight: 900;
+    font-size: 50px;
+    width: 400px;
+    height: 150px;
+    line-height: 150px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    margin: auto 0;
+}
+
+.hero p {
+    color: #fff;
+    margin: 20px;
+    font-size: 16px;
+    font-weight: 200;
+    line-height: 22px;
+}
+
+.hero a {
+    background-color: goldenrod;
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    border-radius: 5px;
+    width: 120px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 900;
+    margin: 0 20px 30px;
+}
+
+.hero article {
+    margin: auto 0;
+    width: 90%;
+}
+
+ul {
+    list-style-type: none;
+    margin: 10px 10px 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
+}
+
+li {
+    border: 1px solid #d8d8d8;
+    padding: 10px 5px;
+    width: auto;
+    border-radius: 10px;
+}
+
+.breweries img {
+    width: 90%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: block;
+    margin: 0 auto;
+}
+
+.breweries p {
+    font-size: 13px;
+    line-height: 20px;
+    height: 70px;
+    display: block;
+    margin: 5px;
+}
+
+h3 {
+    font-size: 16px;
+    font-weight: 900;
+    color: #fff;
+    width: 90%;
+    height: 80px;
+    line-height: 80px;
+    top: -80px;
+    padding: 0 10px;
+    margin: 0 auto;
+    background-color: #000000cb;
+    position: relative;
+    box-sizing: border-box;
+}
+
+figcaption {
+    height: 15px;
+}
+
+.breweries a {
+    background-color: goldenrod;
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    border-radius: 5px;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 900;
+    margin: 20px 5px 0;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    color: #fff;
+    background-color: #000000;
+    height: 50px;
+    line-height: 50px;
+    font-size: 12px;
+    font-weight: 900;
+    text-align: center;
+    width: 100%;
+    display: block;
+}
+
+a:hover {
+    background-color: rgba(218, 165, 32, 0.767);
+}
+
+/* @media screen and (max-width: 699px) {
+    ul {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 999px) and (min-width: 700px) {
+    ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 999px) and (min-width: 700px) {
+    ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+} */
