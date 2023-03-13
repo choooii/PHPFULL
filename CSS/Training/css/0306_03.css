@@ -1,0 +1,27 @@
+h1 {
+    color: rgb(165, 42, 42);
+    border: 3px solid #ffa500;
+    display: inline-block;
+}
+
+h2 {
+    color: rgb(16, 22, 201);
+    border: 3px solid #ffa500;
+    display: inline-block;
+}
+
+.date ol {
+    color: rgb(34, 126, 52);
+    border: 3px solid #ffa500;
+    display: inline-block;
+}
+
+table {
+    border: 1px solid #000000;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #000000;
+    padding: 10px;
+}
