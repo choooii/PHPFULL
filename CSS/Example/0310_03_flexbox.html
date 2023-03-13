@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .flex_container {
+            background-color: gray;
+            width: 60vw;
+            height: 60vh;
+            display: flex;
+            /* flex-direction: 주축과 방향을 지정하는 속성 */
+            flex-direction: row;
+
+            /* flex-wrap: 항목의 줄을 바꿀지 여부를 지정 */
+            flex-wrap: wrap;
+
+            /* flex-flow: column wrap; */
+
+            /* justify-content: 주축 방향을 기준으로 정렬 */
+            /* justify-content: space-around; */
+            /* justify-content: center; */
+
+            /* align-items: 교차축 방향을 기준으로 정렬 */
+            /* align-items: center; */
+
+            /* align-content: 교차축 기준으로 여러줄일 때 정렬 방법을 지정 */
+            align-content: space-around;
+        }
+        
+        .flex_item {
+            border: 1px solid black;
+            width: 15vw;
+            height: 15vh;
+            background-color: aqua;
+        }
+
+        /* .item_3 {
+            align-self: 교차축을 기준으로 특정 항목만 정렬
+            align-self: center;
+        } */
+    </style>
+</head>
+<body>
+    <div class="flex_container">
+        <div class="flex_item">1</div>
+        <div class="flex_item">2</div>
+        <div class="flex_item item_3">3</div>
+        <div class="flex_item">4</div>
+        <div class="flex_item">5</div>
+    </div>
+</body>
+</html>

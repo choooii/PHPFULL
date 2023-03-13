@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .grid_container {
+            background-color: beige;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            /* grid-template-rows: minmax(100px, 200px) minmax(100px, 200px); */
+            /* grid-gap: 10px 20px; */
+        }
+
+        .grid_container2 {
+            background-color: beige;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+
+        .grid_item {
+            background-color: aqua;
+        }
+
+        .grid_item:nth-child(odd) {
+            background-color: yellow;
+        }
+
+        .grid_item1 {
+            grid-column-start: 1;
+            grid-column-end: 4;
+        }
+
+        .grid_item4 {
+            grid-row-start: 2;
+            grid-row-end: 3;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid_container">
+        <div class="grid_item1">1</div>
+        <div class="grid_item">2</div>
+        <div class="grid_item">3</div>
+        <div class="grid_item4">4</div>
+        <div class="grid_item">5</div>
+        <div class="grid_item">6</div>
+    </div>
+    <br>
+    <div class="grid_container2">
+        <div class="grid_item">1</div>
+        <div class="grid_item">2</div>
+        <div class="grid_item">3</div>
+        <div class="grid_item">4</div>
+        <div class="grid_item">5</div>
+        <div class="grid_item">6</div>
+    </div>
+</body>
+</html>
