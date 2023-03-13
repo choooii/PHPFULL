@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .art_1 {
+            border : 3px solid red;
+            display: none;
+        }
+
+        .div_2 {
+            border: 3px solid orange;
+        }
+
+        div {
+            border: 3px solid orange;
+        }
+
+        span {
+            border: 3px solid black;
+        }
+
+        .art_2>div,
+        .art_2>span {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <!-- <article class="art_1">
+        <h1>Display None</h1>
+        <div>div Tag1</div>
+        <div>div Tag</div>
+    </article>
+
+    <div class="div_2">div tag2</div>
+    <h1>h1</h1>
+    <p>p</p>
+
+    <span>span</span>
+    <a href="">a</a> -->
+
+    <article class="art_2">
+        <div>div Tag1</div>
+        <div>div Tag2</div>
+        <span>span1</span>
+        <span>span2</span>
+    </article>
+
+    <br><br>
+    <!-- 인라인 태그에는 width와 height적용 불가 -->
+</body>
+</html>
