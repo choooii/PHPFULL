@@ -8,7 +8,7 @@ INSERT INTO employees (
 )
 VALUES 
 (
-	500001
+	500000
 	,NOW()
 	,'Aran'
 	,'Choe'
@@ -19,5 +19,3 @@ VALUES
 SELECT *
 FROM employees
 WHERE emp_no = 500000;
-
-
