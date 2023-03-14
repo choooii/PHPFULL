@@ -11,7 +11,7 @@ SELECT *
 FROM employees
 WHERE emp_no IN(10001, 10005);
 
-
+-- LIKE: 문자 조회
 SELECT *
 FROM employees
 WHERE first_name LIKE('___m');
@@ -79,3 +79,10 @@ WHERE emp_no = ANY (
 						FROM dept_manager
 						WHERE dept_no = 'd009'
 					 );
+					 
+					 
+-- date 타입의 속성 비교 방법
+SELECT *, NOW()
+FROM titles
+WHERE emp_no = 10009
+  AND to_date >= NOW();

@@ -1,6 +1,6 @@
 -- 직책 테이블의 모든 정보
 SELECT *
-FROM titles;
+FROM titles;0
 
 
 -- 급여가 60,000이하 상원 사번
@@ -59,3 +59,16 @@ WHERE emp_no IN (
 					  HAVING AVG(salary) >= 70000
 					 );
 					
+					
+-- 현재 직책이 senior engineer인 사원의 사원번호와 성 조회
+SELECT emp_no, last_name
+FROM employees
+WHERE emp_no IN (
+					  SELECT emp_no
+					  FROM titles
+					  WHERE to_date >= NOW()
+					    AND title = 'Senior Engineer'
+					 );
+					 
+					 
+					 
