@@ -69,6 +69,3 @@ WHERE emp_no IN (
 					  WHERE to_date >= NOW()
 					    AND title = 'Senior Engineer'
 					 );
-					 
-					 
-					 
