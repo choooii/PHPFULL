@@ -46,7 +46,7 @@ LIMIT 10;
 -- 5-2. rank 사용
 SELECT emp.emp_no, CONCAT(emp.first_name, ' ', emp.last_name), sal.salary
 FROM employees emp
-INNER JOIN (SELECT emp_no, salary, RANK() OVER (ORDER BY salary desc) AS rk
+INNER JOIN (SELECT emp_no, salary, RANK() OVER (ORDER BY salary DESC) AS rk
 				FROM salaries
 				WHERE to_date = DATE(99990101)
 				) sal
@@ -58,19 +58,20 @@ ORDER BY sal.rk;
 -- 6. 각 부서의 부서장의 부서명, 풀네임, 입사일을 출력해주세요.
 SELECT dep.dept_name, CONCAT(emp.first_name, ' ', emp.last_name), emp.hire_date
 FROM dept_manager dept_m
-		INNER JOIN employees emp
-			ON dept_m.emp_no = emp.emp_no
-		INNER JOIN departments dep
-			ON dept_m.dept_no = dep.dept_no
+	INNER JOIN employees emp
+		ON dept_m.emp_no = emp.emp_no
+	INNER JOIN departments dep
+		ON dept_m.dept_no = dep.dept_no
 WHERE dept_m.to_date = DATE(99990101);
 
 
 -- 7. 현재 직책이 'Staff'인 사원의 현재 평균 월급을 출력해주세요.
 SELECT AVG(sal.salary)
 FROM titles ti
-		INNER JOIN salaries sal
-			ON ti.emp_no = sal.emp_no
+	INNER JOIN salaries sal
+		ON ti.emp_no = sal.emp_no
 WHERE ti.to_date = DATE(99990101)
+AND sal.to_date = DATE(99990101)
 AND ti.title = 'Staff';
 
 
@@ -79,15 +80,20 @@ SELECT CONCAT(emp.first_name, ' ', emp.last_name), emp.hire_date, emp.emp_no, de
 FROM dept_manager dep_m
 		INNER JOIN employees emp
 			ON dep_m.emp_no = emp.emp_no;
+			
+SELECT emp_no, COUNT(*)
+FROM employees
+GROUP BY emp_no
+HAVING COUNT(*) > 1 ;
 
 
 -- 9. 현재 각 직급별 평균월급 중 60,000이상인 직급의 직급명, 평균월급(정수)를 내림차순으로  출력해주세요.
-SELECT ti.title, TRUNCATE(AVG(sal.salary), 0) AS avg_sal
+SELECT ti.title, TRUNCATE(AVG(sal.salary), 0) avg_sal
 FROM salaries sal
 	INNER JOIN titles ti
 		ON sal.emp_no = ti.emp_no
 WHERE ti.to_date = DATE(99990101)
-AND sal.to_date = DATE(99990101)
+	AND sal.to_date = DATE(99990101)
 GROUP BY ti.title HAVING avg_sal >= 60000
 ORDER BY avg_sal DESC;
 
@@ -95,9 +101,10 @@ ORDER BY avg_sal DESC;
 -- 10. 성별이 여자인 사원들의 직급별 사원수를 출력해주세요.
 SELECT ti.title, COUNT(*)
 FROM employees emp
-		INNER JOIN titles ti
+	INNER JOIN titles ti
 			ON emp.emp_no = ti.emp_no
 WHERE emp.gender = 'F'
+	AND ti.to_date = DATE(99990101)
 GROUP BY ti.title;
 
 SELECT COUNT(*)
@@ -105,6 +112,7 @@ FROM employees emp
 		INNER JOIN titles ti
 			ON emp.emp_no = ti.emp_no
 WHERE emp.gender = 'F'
+	AND ti.to_date = DATE(99990101)
 AND ti.title = 'manager';
 
 
