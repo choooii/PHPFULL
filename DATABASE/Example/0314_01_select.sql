@@ -1,7 +1,7 @@
 SELECT *
 FROM employees
 WHERE emp_no <= 10003
-   OR emp_no >= 10005;
+	OR emp_no >= 10005;
 
 SELECT *
 FROM employees
@@ -68,8 +68,8 @@ WHERE dept_no = (
 						SELECT dept_no 
 						FROM dept_manager
 						WHERE emp_no = 110344
-					 );
-					 
+					);
+
 
 -- 서브쿼리 앞에 '= ANY' 혹은 'IN'을 삽입하면 결과값 포함 모든 데이터 조회
 SELECT *
@@ -78,11 +78,11 @@ WHERE emp_no = ANY (
 						SELECT emp_no 
 						FROM dept_manager
 						WHERE dept_no = 'd009'
-					 );
-					 
-					 
+					);
+
+
 -- date 타입의 속성 비교 방법
 SELECT *, NOW()
 FROM titles
 WHERE emp_no = 10009
-  AND to_date >= NOW();
+	AND to_date >= NOW();
