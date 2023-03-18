@@ -1,0 +1,148 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.wrap {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 50px 750px;
+}
+
+.header {
+    color: #fff;
+    background-color: rgb(255, 0, 81);
+    grid-column: 1/2;
+    grid-row: 1/3;
+}
+
+.header .logo {
+    margin: 40px auto;
+    text-align: center;
+    font-family: 'Shrikhand';
+    font-size: 28px;
+}
+
+.header .nav__title {
+    display: block;
+    background-color: rgba(255, 255, 255, 0.188);
+    padding: 10px 20px;
+    font-size: 13px;
+    margin: 10px 0;
+}
+
+.header .nav__link {
+    display: block;
+    padding: 5px 20px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.header .nav__container {
+    margin: 0 0 30px 0;
+}
+
+.top-bar {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    display: grid;
+    grid-template-columns: 1fr 50px;
+    background-color: rgb(245, 245, 245);
+}
+
+.top-bar label[for="idSearch"] {
+    display: none;
+}
+
+.top-bar input[id="idSearch"] {
+    border: 1px solid rgb(236, 236, 236);
+    width: 100%;
+    height: 30px;
+    color: rgb(245, 245, 245);
+    line-height: 30px;
+    padding-left: 10px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.top-bar .search {
+    padding: 10px;
+}
+
+.top-bar .profile__icon {
+    color: #fff;
+    background-color: rgb(145, 76, 255);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    font-family: 'Shrikhand';
+    text-align: center;
+    line-height: 38px;
+    margin: 6px 6px 6px 0;
+}
+
+.main {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    background-color: rgb(245, 245, 245);
+}
+
+.main .main__header {
+    position: relative;
+    padding: 70px 10px;
+    background-image: url('http://unsplash.it/1200/600?image=495');
+    background-size: cover;
+}
+.main .main__header:after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: "";
+    left: 0;
+    top: 0;
+    display: block;
+    background-color: rgba(10, 10, 10, 0.6);
+}
+
+.main .main__title {
+    color: #fff;
+    text-align: center;
+    font-size: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.main li {
+    border: 1px solid rgb(236, 236, 236);
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    width: 100%;
+}
+
+.main ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-gap: 20px;
+    padding: 30px 20px;
+}
+
+.main .listing-card__image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    padding-top: 150%
+}
+
+.main .listing-card__name {
+    display: block;
+    margin: 20px 0 10px;
+    font-size: 18px;
+}
+
+.main .listing-card__date {
+    color: rgb(167, 167, 167);
+}
