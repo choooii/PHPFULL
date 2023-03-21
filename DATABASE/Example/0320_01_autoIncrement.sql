@@ -24,11 +24,11 @@ WHERE mem_name = '박상준';
 -- 3. auto_increment 수정
 --	- 이미 생성한 테이블의 컬럼에 추가할 때
 CREATE TABLE test (
-	mem_no		INT(11) PRIMARY KEY AUTO_INCREMENT
+	mem_no		INT(11) PRIMARY KEY
 	,mem_name	VARCHAR(50)
 );
 
-ALTER TABLE test MODIFY mem_no INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE test MODIFY mem_no INT(11) AUTO_INCREMENT;
 
 INSERT INTO test (mem_name)
 VALUES ('최아란');
