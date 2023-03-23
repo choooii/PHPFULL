@@ -1,8 +1,8 @@
 <?php
-    $n = 5;
+    $n = 0;
 
     switch ($n) {
-        case $n < 0 || $n > 100:
+        case $n <= -1: //|| $n > 100:
             echo "잘못된 값을 입력했습니다.";
             break;
         
