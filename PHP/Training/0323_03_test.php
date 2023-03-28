@@ -39,4 +39,21 @@ for ($i=1; $i<=$s ; $i++) {
         }
     echo "\n";
     }
+
+$int = 4;
+for ($i = $int; $i > 0; $i--) 
+{ 
+    for ($z = 1; $z <= $int ; $z++) 
+    { 
+        if ($z < $i)
+        {
+            echo " ";
+        }
+        else
+        {
+            echo "*";
+        }
+    }
+echo "\n";
+}
         ?> 
