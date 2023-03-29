@@ -43,4 +43,24 @@
     }
 
     echo rcc(3);
+
+    //void 함수
+    function sum1($n1, $n2)
+    {
+        echo $n1 + $n2;
+        // return; 이 생략되어 있음
+    }
+    
+    //return 함수
+    function sum2($n1, $n2)
+    {
+        return $n1 + $n2;
+    }
+
+    sum1(1, 2);
+    sum1(2, 4);
+
+    $result = sum2(3, 6);
+    echo $result."\n";
+    sum1($result, $result);
 ?>

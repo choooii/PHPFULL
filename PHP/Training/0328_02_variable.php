@@ -32,13 +32,14 @@
         }
         echo "\n";
     }
+    
 
     // *
     // **
     // ***
     function print_echo($int)
     {
-        for ($i=1; $i <= $int ; $i++) 
+        for ($i=1; $i <= $int; $i++) 
         { 
             print_star($i);
         }
@@ -49,15 +50,15 @@
     // ***
     function print_star_rect($int)
     {
-        for ($i=1; $i <= $int ; $i++) 
+        for ($i=0; $i < $int; $i++) 
         { 
             print_star($int);
         }
     }
 
-    echo print_echo(3);
+    // echo print_echo(3);
     // echo print_star_rect(3);
-
+    
 
 
 ?>
