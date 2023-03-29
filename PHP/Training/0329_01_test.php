@@ -1,6 +1,7 @@
 <?php
     $arr = array(5, 10, 7, 3, 1);
 
+    // 버블 정렬
     function back($arr)
     {
         for ($i=count($arr) - 1; $i > 0; $i--) 
@@ -36,7 +37,11 @@
         }
         return $arr;
     }
+    
+    $result = back2($arr);
+    print_r($result);
 
+    // 선택 정렬
     // function select($arr)
     // {
     //     for ($i=0; $i < count($arr); $i++) 
@@ -53,9 +58,4 @@
     //     }
     //     return $arr;
     // }
-
-
-    $result = back2($arr);
-    print_r($result);
-
 ?>

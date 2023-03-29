@@ -32,5 +32,4 @@ function my_min($arr)
 
 // echo my_max($arr);
 echo my_min($arr);
-
 ?>
