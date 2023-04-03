@@ -1,6 +1,6 @@
 -- 직책 테이블의 모든 정보
 SELECT *
-FROM titles;0
+FROM titles;
 
 
 -- 급여가 60,000이하 상원 사번
