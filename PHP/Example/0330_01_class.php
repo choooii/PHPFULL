@@ -6,7 +6,7 @@
         // 클래스 멤버 변수
         public $std_name; // public : 어디서든 사용 가능
         private $std_id; // private : 지정된 클래스 내에서만 접근 가능
-        protected $std_age; // protected : 상속 class 내에서만 접근 가능
+        protected $std_age; // protected : class 자기 자신과 상속 class 내에서만 접근 가능
         // 접근제어 지시자 : public, private, protected
         
         // 클래스 안에 있는 function을 method라고 부름.
@@ -35,42 +35,78 @@
     // class를 선언(초기화)
     $obj_Student = new Student;
     // class의 method 호출
-    $obj_Student->print_student("홍길동", 27);
+    // $obj_Student->print_student("홍길동", 27);
     // class의 멤버변수 사용방법
     $obj_Student->std_name = "갑돌이";
-    echo $obj_Student->std_name;
+    // echo $obj_Student->std_name;
 
     // 아래처럼 하면 지시자가 private이기 때문에 접근 권한이 없음
     // $obj_Student->std_id = "갑순이";
 
     // getter, setter로 private 객체에 접근
     $obj_Student->set_std_id("갑순이id");
-    echo $obj_Student->get_std_id();
-    echo "\n";
+    // echo $obj_Student->get_std_id();
+    // echo "\n";
 
 
 
 
-    ///////////////////
-    // 생성자(constructor)
-    class Food
+///////////////////
+// 생성자(constructor)
+class Food 
+{
+    // 멤버 변수
+    protected $str_name;
+    protected $int_price;
+
+    // 메소드
+    public function __construct( $param_name, $param_price )
     {
-        private $food_name;
-
-        // 생성자
-        public function __construct($param_food_name)
-        {
-            $this->food_name = $param_food_name;
-        }
-
-        public function print_food_name()
-        {
-            echo $this->food_name;
-        }
+        $this->str_name = $param_name;
+        $this->int_price = $param_price;
     }
 
-    $obj_food = new Food("탕수육");
-    $obj_food->print_food_name();
+    public function fnc_print_food()
+    {
+        $str = $this->str_name." : ".$this->int_price."원\n";
+        echo $str;
+    }
+
+    public function fnc_change_price( $food_price )
+    {
+        $this->int_price = $food_price;
+    }
+}
+
+// $obj_food = new Food("탕수육");
+// $obj_food->print_food_name();
+
+
+// 상속 : 부모 클래스의 객체를 자식 클래스가 상속받아 사용
+class KoreanFood extends Food
+{
+    protected $side_dish;
+
+    public function __construct( $param_name, $param_price, $param_side_dish )
+    {
+        $this->str_name = $param_name;
+        $this->int_price = $param_price;
+        $this->side_dish = $param_side_dish;
+    }
+    
+    // 오버라이딩 : 부모클래스에서 정의된 메소드를 자식클래스에서 재정의
+    public function fnc_print_food()
+    {
+        parent::fnc_print_food();
+        $str = "반찬 : ".$this->side_dish."\n";
+        echo $str;
+    }
+
+}
+
+$obj_korean_food = new KoreanFood( "치킨", 20000, "치킨무" );
+$obj_korean_food->fnc_print_food();
+
 
 
 ?>
