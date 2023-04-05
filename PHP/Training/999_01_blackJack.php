@@ -31,28 +31,89 @@
 // }
 // echo "끝!\n";
 
-$deck = array();
-$number = array("a", "2", "3", "4", "5", "6", "7", "8", "9", "10", "j", "q", "k");
-$shape = array("d", "h", "s", "c");
+class Blackjack
+{
+	public $deck = array();
+	public $number = array("a", "2", "3", "4", "5", "6", "7", "8", "9", "10", "j", "q", "k");
+	public $shape = array("d", "h", "s", "c");
+	public $user = array();
+	public $dealer = array();
+
+	// 덱 생성+셔플 함수
+	public function deckmake(&$array)
+	{
+		for ($i=0; $i < 4 ; $i++) 
+		{
+			for ($z=0; $z < 13; $z++) 
+			{
+				array_push($array, $this->shape[$i].$this->number[$z]);
+			}
+		}
+		shuffle($array); // 덱 셔플
+
+		return $array;
+	}
+
+	// 한장 분배하는 함수
+	public function hit(&$array)
+	{
+		$z = array_pop($this->deck);
+		array_push($array, $z);
+
+		return $array;
+	}
+
+	//배열 내 문자를 계산할 수 있는 숫자로 변경
+	public function str_into_int(&$array)
+	{
+		foreach ($array as $key => $val)
+		{
+			if (!is_numeric(mb_substr($val, 1))) 
+			{
+				$array[$key] = 10;
+			}
+			else 
+			{
+				$array[$key] = mb_substr($val, 1);
+			}
+		}
+
+		return $array;
+	}
+
+
+
+}
+
+$obj_black = new Blackjack;
 
 // 덱 생성
-for ($i=0; $i < 4 ; $i++) 
-{
-	for ($z=0; $z < 13; $z++) 
-	{
-		array_push($deck, $shape[$i].$number[$z]);
-	}
-}
+$obj_black->deckmake($obj_black->deck);
 
-// 덱 섞기
-shuffle($deck);
+// 유저 카드 2장 배분 후 숫자만 배열에 넣음
+$obj_black->hit($obj_black->user); // 1장
+$obj_black->hit($obj_black->user); // 2장
 
-// 숫자 남기기
-$deck_int = array();
-foreach ($deck as $key => $val)
-{
-	array_push($deck_int, mb_substr($deck[]));
-}
+// 딜러 카드 2장 배분 후 숫자 배열에 넣음
+$obj_black->hit($obj_black->dealer); // 1장
+$obj_black->hit($obj_black->dealer); // 2장
+
+// 각자 분배된 카드와 숫자 배열 확인
+echo "유저 : ".$obj_black->user[0]." ".$obj_black->user[1];
+echo "\n";
+echo "딜러 : ".$obj_black->dealer[0]." ".$obj_black->dealer[1];
+echo "\n";
+
+// 각각 배열 숫자로 변환
+$obj_black->str_into_int($obj_black->user); // 유저 배열 변경
+$obj_black->str_into_int($obj_black->dealer); // 딜러 배열 변경
+
+// print_r($obj_black->user);
+// print_r($obj_black->dealer);
+
+// 합에 따른 결과 배정
+$user_sum = array_sum($obj_black->user); // 유저 합계
+$dealer_sum = array_sum($obj_black->dealer); // 딜러 합계
 
 
 ?>
