@@ -38,8 +38,8 @@
     $str_cut = "가나다라마";
     echo mb_substr($str_cut, 2)."\n"; // '다라마' : 글자 수로 자름
     echo mb_substr($str_cut, 2, 1)."\n"; // '다' : 두번째 글자 이후부터 1번 자름
-    echo mb_substr($str_cut, -2)."\n"; // '라' : 음수는 뒤에서부터 자름
-    echo mb_substr($str_cut, -2, 1)."\n"; // '라마'
+    echo mb_substr($str_cut, -2)."\n"; // '라마' : 음수는 뒤에서부터 자름
+    echo mb_substr($str_cut, -2, 1)."\n"; // '라'
     $str_tng = "안녕하세요. PHP입니다.";
     // PHP입니다.
     echo mb_substr($str_tng, -7)."\n";
