@@ -22,7 +22,7 @@
 // while(true) {
 // 	echo '시작';
 // 	print "\n";
-// 	fscanf(STDIN, "%d\n", $input);        
+// 	fscanf(STDIN, "%d\n", $input);
 // 	if($input === 0) {
 // 		break;
 // 	}
@@ -40,14 +40,13 @@ class Blackjack
 	// 덱 생성+셔플 함수
 	public function deckmake()
 	{
-		$number = array("a", "2", "3", "4", "5", "6", "7", "8", "9", "10", "j", "q", "k");
-		$shape = array( "♡", "◇", "♧", "♤");
-		for ($i=0; $i < count($shape) ; $i++) 
+		$number = array("A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K");
+		$shape = array( "♥", "◆", "♣", "♠");
+		for ($i=0; $i < count($shape) ; $i++)
 		{
-			for ($z=0; $z < count($number); $z++) 
+			for ($z=0; $z < count($number); $z++)
 			{
 				array_push($this->deck, "$shape[$i]$number[$z]");
-				// array_push($this->deck, $number[$z]);
 			}
 		}
 		shuffle($this->deck); // 덱 셔플
@@ -56,15 +55,13 @@ class Blackjack
 	// 한장 분배해서 유저 배열 안에 넣는 함수
 	public function hit_user()
 	{
-		$z = array_pop($this->deck);
-		array_push($this->user, $z);
+		array_push($this->user, array_pop($this->deck));
 	}
 
 	// 한장 분배해서 딜러 배열 안에 넣는 함수
 	public function hit_dealer()
 	{
-		$z = array_pop($this->deck);
-		array_push($this->dealer, $z);
+		array_push($this->dealer, array_pop($this->deck));
 	}
 
 	// 유저 손패 리턴해주는 함수
@@ -79,26 +76,45 @@ class Blackjack
 		return $this->dealer;
 	}
 
+	public function setgame()
+	{
+		// 덱 생성
+		$this->deckmake();
+
+		// 패 2번 돌리기
+		for ($i=0; $i < 2 ; $i++)
+		{
+			$this->hit_dealer();
+			$this->hit_user();
+		}
+
+		// 첫 패 점수 공개
+		echo "유저 : ".$this->user_hand_return()[0]." ".$this->user_hand_return()[1];
+		echo "\n";
+		echo "딜러 : ".$this->dealer_hand_return()[0]." ".$this->dealer_hand_return()[1];
+		echo "\n";
+	}
+
 	// 유저 배열 합계 리턴
 	public function get_user_score()
 	{
-		foreach ($this->user as $key => $val) 
+		$sum = 0;
+		foreach ($this->user as $val)
 		{
-			if (mb_substr($val, 1) === "a")
+			if (mb_substr($val, 1) === "A")
 			{
-				$this->user[$key] = 1;
+				$sum += 1;
 			}
-			else if (mb_substr($val, 1) === 'j' || mb_substr($val, 1) === 'q' || mb_substr($val, 1) === 'k')
+			else if (mb_substr($val, 1) === 'J' || mb_substr($val, 1) === 'Q' || mb_substr($val, 1) === 'K')
 			{
-				$this->user[$key] = 10;
+				$sum += 10;
 			}
-			else 
+			else
 			{
-				$this->user[$key] = mb_substr($val, 1); 
+				$sum += mb_substr($val, 1);
 			}
-			$sum = array_sum($this->user);
-			
-			if ($val === "a" && $sum <= 11)
+
+			if (mb_substr($val, 1) === "A" && $sum <= 11)
 			{
 				$sum += 10;
 			}
@@ -109,23 +125,23 @@ class Blackjack
 	// 딜러 배열 합계 리턴
 	public function get_dealer_score()
 	{
-		foreach ($this->dealer as $key => $val) 
+		$sum = 0;
+		foreach ($this->dealer as $val)
 		{
-			if (mb_substr($val, 1) === "a")
+			if (mb_substr($val, 1) === "A")
 			{
-				$this->dealer[$key] = 1;
+				$sum += 1;
 			}
-			else if (mb_substr($val, 1) === 'j' || mb_substr($val, 1) === 'q' || mb_substr($val, 1) === 'k')
+			else if (mb_substr($val, 1) === 'J' || mb_substr($val, 1) === 'Q' || mb_substr($val, 1) === 'K')
 			{
-				$this->dealer[$key] = 10;
+				$sum += 10;
 			}
-			else 
+			else
 			{
-				$this->dealer[$key] = mb_substr($val, 1); 
+				$sum += mb_substr($val, 1);
 			}
-			$sum = array_sum($this->dealer);
-			
-			if (mb_substr($val, 1) === "a" && $sum <= 11)
+
+			if (mb_substr($val, 1) === "A" && $sum <= 11)
 			{
 				$sum += 10;
 			}
@@ -133,71 +149,151 @@ class Blackjack
 		return $sum;
 	}
 
+	// 유저 손패 출력
+	public function print_user_hand()
+	{
+		echo "유저 : ".implode(", ", $this->user);
+	}
+
+	// 유저 손패 출력
+	public function print_dealer_hand()
+	{
+		echo "딜러 : ".implode(", ", $this->dealer);
+	}
+
+
+	// 첫 손패 배분 후 21초과나 블랙잭 체크
+	public function check_sum()
+	{
+		$array_sum
+					= array(
+						"유저" => $this->get_user_score()
+						,"딜러" => $this->get_dealer_score()
+						);
+
+		foreach ($array_sum as $key => $val)
+		{
+			if ( $val > 21 )
+			{
+				echo $key." : burst\n";
+				return true;
+			}
+			else if ( $val === 21 )
+			{
+				echo $key." : 블랙잭\n";
+				return true;
+			}
+		}
+	}
+
+	// 딜러 합계 17 이하일때까지 카드 배분
+	public function dealer_17()
+	{
+		while ( $this->get_dealer_score() < 17 ) 
+		{
+			$this->hit_dealer();
+			if( $this->get_dealer_score() > 21 ) 
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 
 	// 합 비교
 	public function compare_sum()
 	{
-		$user_sum = $this->get_user_score();
-		$dealer_sum = $this->get_dealer_score();
-		
-		echo "유저 합계 : ".$user_sum;
-		echo "\n";
-		echo "딜러 합계 : ".$dealer_sum;
-		echo "\n";
+	$user_sum = $this->get_user_score();
+	$dealer_sum = $this->get_dealer_score();
 
-		if ( $user_sum === $dealer_sum )
+	if ( $user_sum === $dealer_sum )
+	{
+		if( count($this->user) < count($this->dealer) )
 		{
+			echo "유저 카드 수 : ".count($this->user);
+			echo "\n";
+			echo "딜러 카드 수 : ".count($this->dealer);
+			echo "\n";
+			echo "유저 승리";
+		}
+		else if ( count($this->user) > count($this->dealer) )
+		{
+			echo "유저 카드 수 : ".count($this->user);
+			echo "\n";
+			echo "딜러 카드 수 : ".count($this->dealer);
+			echo "\n";
+			echo "딜러 승리";
+		}
+		else 
+		{
+			echo "유저 카드 수 : ".count($this->user);
+			echo "\n";
+			echo "딜러 카드 수 : ".count($this->dealer);
+			echo "\n";
 			echo "비김";
 		}
-		else if ( $user_sum <= 21 && $dealer_sum <= 21 ) 
+	}
+	else if ( $user_sum <= 21 && $dealer_sum <= 21 )
+	{
+		if ( $user_sum > $dealer_sum )
 		{
-			if ( $user_sum > $dealer_sum ) 
-			{
-				echo "유저 이김";
-			}
-			else 
-			{
-				echo "딜러 이김";
-			}
-		}
-		else if ( $user_sum <= 21 )
-		{
-			echo "유저 이김";
+			echo "유저 승리";
 		}
 		else
 		{
-			echo "딜러 이김";
+			echo "딜러 승리";
 		}
 	}
+	}
+
 
 
 
 }
 
+
+// $input = null; // input 초기화
+// while( !( $input === 0 ) ) 
+
+// {
 $obj_black = new Blackjack;
+// 1입력 : 카드 더받기, 2입력 : 카드비교, 0입력 : 게임종료
+echo '------------------- 게임 시작 -------------------';
+print "\n";
+$obj_black->setgame();
+print "\n";
 
-// 덱 생성+섞기
-$obj_black->deckmake();
 
-// 유저 카드 2장 배분(배열에 넣음)
-$obj_black->hit_user();
-$obj_black->hit_user();
+if ($obj_black->check_sum())
+{
+	echo "\n[최종 손패]\n";
+	echo $obj_black->print_user_hand()."\n";
+	echo $obj_black->print_dealer_hand()."\n\n";
+}
+else 
+{
+	echo "[1] : 카드 더 받기\n[2] : 카드 비교\n[O] : 게임 종료\n";
+	echo "------------------------------------------------\n";
 
-// 딜러 카드 2장 배분(배열에 넣음)
-$obj_black->hit_dealer();
-$obj_black->hit_dealer();
+	while(true) 
+	{
+		fscanf( STDIN, "%d\n", $input );
+		if( $input === 1 ) 
+		{
+			echo "1 입력\n";
+		} 
+		else if( $input === 2 ) 
+		{
+			echo "\n".$obj_black->compare_sum();
+		} 
+		else if( $input === 0 ) 
+		{ 
+			break;
+		}
+		echo "------------------------------------------------\n";
+	}
+}
 
-// 각자 점수
-echo "유저 : ".$obj_black->user_hand_return()[0]." ".$obj_black->user_hand_return()[1];
-echo "\n";
-echo "딜러 : ".$obj_black->dealer_hand_return()[0]." ".$obj_black->dealer_hand_return()[1];
-echo "\n";
-
-// echo "유저 합계: ".$obj_black->get_user_score();
-// echo "딜러 합계: ".$obj_black->get_dealer_score();
-
-// 각 패의 합 도출
-$obj_black->compare_sum()
-
+// }
 
 ?>
