@@ -27,6 +27,7 @@ try
     {
         echo implode(" ", $val)."\n";
     }
+    
     foreach ($result2 as $val) 
     {
         echo implode(" ", $val)."\n";
