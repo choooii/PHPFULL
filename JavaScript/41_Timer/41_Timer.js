@@ -49,11 +49,11 @@ btn2.addEventListener('click', () => {
     }
 });
 
-// 같은 버튼에 사용하기
-// function toggle(){
-//     if (btn1.classList.toggle('on')){
-//         setting = setInterval(() => timeChange(), 1000);
-//     } else {
-//         clearInterval(setting);
-//     }
-// }
+//같은 버튼에 사용하기
+function toggle(){
+    if (btn1.classList.toggle('on')){
+        setting = setInterval(() => timeChange(), 1000);
+    } else {
+        clearInterval(setting);
+    }
+}
