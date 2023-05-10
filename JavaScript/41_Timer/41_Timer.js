@@ -26,7 +26,6 @@ let i = 1;
 
 // 예제 2. 시간 만들기
 function timeChange() {
-    const time = document.querySelector('#time');
     const NOW = new Date();
     // const hour = ('00' + NOW.getHours()).slice(-2);
     // const min = ('00' + NOW.getMinutes()).slice(-2);
@@ -34,6 +33,7 @@ function timeChange() {
     // const ampm = NOW.getHours() < 12 ? '오전' : '오후';
     // const nowTime = ampm + ' ' + hour + ':' + min + ':' + sec;
     const stringTime = NOW.toLocaleTimeString();
+    const time = document.querySelector('#time');
     time.innerHTML = stringTime;
 }
 
@@ -41,7 +41,7 @@ timeChange();
 let setting = setInterval(timeChange, 1000);
 const btn1 = document.querySelector('#btn1');
 const btn2 = document.querySelector('#btn2');
-btn1.addEventListener('click', () => clearInterval(setting));
+btn1.addEventListener('click', () => setting = clearInterval(setting));
 btn2.addEventListener('click', () => {
     if(!setting){
         timeChange();
