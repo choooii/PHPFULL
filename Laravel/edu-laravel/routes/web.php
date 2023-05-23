@@ -181,6 +181,8 @@ Route::get('/test', [TestController::class, 'index'])->name('tests.index');
 
 // 커맨드: php artisan make:controller [컨트롤러명] --resource
 use App\Http\Controllers\TasksController;
+
+// 리소스 컨트롤러 바인딩
 Route::resource('/tasks', TasksController::class);
 
 // php artisan route:list
