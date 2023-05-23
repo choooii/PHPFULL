@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
-
+;
 
 /*
 |--------------------------------------------------------------------------
@@ -179,22 +179,4 @@ Route::get('/sign', function () {
 use App\Http\Controllers\TestController;
 Route::get('/test', [TestController::class, 'index'])->name('tests.index');
 
-// 커맨드: php artisan make:controller [컨트롤러명] --resource
-use App\Http\Controllers\TasksController;
-Route::resource('/tasks', TasksController::class);
-
-// php artisan route:list
-// GET|HEAD        tasks .................................. tasks.index › TasksController@index  
-// POST            tasks .................................. tasks.store › TasksController@store  
-// GET|HEAD        tasks/create ......................... tasks.create › TasksController@create  
-// GET|HEAD        tasks/{task} ............................. tasks.show › TasksController@show  
-// PUT|PATCH       tasks/{task} ......................... tasks.update › TasksController@update  
-// DELETE          tasks/{task} ....................... tasks.destroy › TasksController@destroy  
-// GET|HEAD        tasks/{task}/edit ........................ tasks.edit › TasksController@edit
-
-
-// * ------------------------------
-// * 블레이드 템플릿
-// * ------------------------------
-use App\Http\Controllers\BladeController;
-Route::get('blade', [BladeController::class, 'index'])->name('blade.index');
+// 커맨드 커맨드: php artisan make:controller [컨트롤러명] --resource
