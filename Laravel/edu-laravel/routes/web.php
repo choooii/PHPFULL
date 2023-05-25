@@ -193,6 +193,9 @@ Route::resource('/tasks', TasksController::class);
 // DELETE          tasks/{task} ....................... tasks.destroy › TasksController@destroy  
 // GET|HEAD        tasks/{task}/edit ........................ tasks.edit › TasksController@edit
 
+// board controller 바인딩
+use App\Http\Controllers\BoardController;
+Route::resource('/board', BoardController::class);
 
 // * ------------------------------
 // * 블레이드 템플릿
