@@ -1,31 +1,58 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <!-- <div>
-    <h4>{{product1}}</h4>
-    <p>{{price1}}</p>
-  </div>
-  <div>
-    <h4 :style="styleR">{{product2}}</h4>
-    <p>{{price2}}</p>
-  </div> -->
+  <Navi :navList="navList"/>
+  <ProductList 
+    :product="product"
+    @openModal="modalFlg = true; productNum=i"
+    v-for="(product, i) in products" :key="i"
+  />
+  <Modal 
+    :modalFlg="modalFlg"
+    :products="products"
+    :productNum="productNum"
+    @closeModal="modalFlg = false"
+    @countUp="products[productNum].count++"
+    @countDown="products[productNum].count--"
+  />
 
-  <div v-for="(item, i) in products" :key="i">
-    <h4>{{ item.name }}</h4>
-    <p>{{ item.price }}</p>
-  </div>
+  <!-- 모달 -->
+  <!-- <div class="bg-black" v-if="modalFlg">
+    <div class="bg-white">
+      <img :src="products[productNum].img">
+      <h4>{{ products[productNum].name }}</h4>
+      <p>{{ products[productNum].price * products[productNum].count }}원</p>
+      <p>{{ products[productNum].content }}</p>
+      
+      <div class="cntBtn">
+        <span v-if="products[productNum].count > 1">
+          <button v-on:click="products[productNum].count--">-</button>
+        </span>
+        <span v-else-if="products[productNum].count === 1">
+          <button>-</button>
+        </span>
+          <span>{{ products[productNum].count }}</span>
+          <button @click="products[productNum].count++">+</button>
+      </div>
+      
+      <button @click="modalFlg = false;">닫기</button>
+    </div>
+  </div> -->
 </template>
 
 <script>
+import data from './assets/js/data.js';
+import Navi from './components/Navi.vue';
+import ProductList from './components/ProductList.vue';
+import Modal from './components/Modal.vue';
 
 export default {
   name: 'App',
   data() { // 데이터 바인딩
     return {
-      products: [
-        {name: '티셔츠', price: '3800원'},
-        {name: '바지', price: '5000원'},
-        {name: '점퍼', price: '6000원'},
-      ],
+      products: data,
+      modalFlg: false,
+      productNum: 0,
+      navList: ['홈', '상품', '기타', '양말'],
+
       product1: '양말',
       price1: '3800원',
       product2: '바지',
@@ -33,6 +60,26 @@ export default {
       styleR: 'color:red'
     }
   },
+  methods: { // 함수를 설정하는 영역
+    plus(i) {
+      this.products[i].count++;
+    },
+
+    sub(i) {
+      this.products[i].count--;
+    },
+
+    openModal(i) {
+      this.modalFlg = true;
+      this.productNum = i;
+    },
+
+  },
+  components: { // 컴포넌트 정의
+    Navi: Navi,
+    ProductList: ProductList,
+    Modal: Modal,
+  }
 }
 </script>
 
@@ -45,4 +92,14 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+img {
+  width: 400px;
+}
+
+.cntBtn {
+  margin: 1.33em 0
+}
+
+@import url('./assets/css/app.css');
 </style>
