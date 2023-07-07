@@ -13,29 +13,6 @@
     @countUp="products[productNum].count++"
     @countDown="products[productNum].count--"
   />
-
-  <!-- 모달 -->
-  <!-- <div class="bg-black" v-if="modalFlg">
-    <div class="bg-white">
-      <img :src="products[productNum].img">
-      <h4>{{ products[productNum].name }}</h4>
-      <p>{{ products[productNum].price * products[productNum].count }}원</p>
-      <p>{{ products[productNum].content }}</p>
-      
-      <div class="cntBtn">
-        <span v-if="products[productNum].count > 1">
-          <button v-on:click="products[productNum].count--">-</button>
-        </span>
-        <span v-else-if="products[productNum].count === 1">
-          <button>-</button>
-        </span>
-          <span>{{ products[productNum].count }}</span>
-          <button @click="products[productNum].count++">+</button>
-      </div>
-      
-      <button @click="modalFlg = false;">닫기</button>
-    </div>
-  </div> -->
 </template>
 
 <script>
