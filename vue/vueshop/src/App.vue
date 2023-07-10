@@ -1,18 +1,35 @@
 <template>
   <Navi :navList="navList"/>
+
+  <div class="discount">
+    <p>🤐지금 당장 구매하시면, {{ number }}% 할인😬</p>
+  </div>
+  <br>
+  <br>
+
+  <!-- v-modal 테스트 -->
+  <!-- <input type="text" @input="inputTest = $event.target.value"> -->
+  <!-- <input type="text" v-model="inputTest">
+  <br>
+  <br>
+  <span>{{ inputTest }}</span> -->
+
   <ProductList 
     :product="product"
     @openModal="modalFlg = true; productNum=i"
     v-for="(product, i) in products" :key="i"
   />
-  <Modal 
-    :modalFlg="modalFlg"
-    :products="products"
-    :productNum="productNum"
-    @closeModal="modalFlg = false"
-    @countUp="products[productNum].count++"
-    @countDown="products[productNum].count--"
-  />
+  <!-- <div class="startTransition" :class="{endTransition : modalFlg}"> -->
+    <transition name="modalTransition">
+      <Modal 
+        :modalFlg="modalFlg"
+        :products="products"
+        :productNum="productNum"
+        @closeModal="modalFlg = false;"
+        ref="modalCom"
+        />
+    </transition>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -29,12 +46,30 @@ export default {
       modalFlg: false,
       productNum: 0,
       navList: ['홈', '상품', '기타', '양말'],
+      inputTest: '',
+      number: 20,
 
       product1: '양말',
       price1: '3800원',
       product2: '바지',
       price2: '5000원',
-      styleR: 'color:red'
+      styleR: 'color:red',
+    }
+  },
+  mounted() {
+    let interval = setInterval(() => {
+      this.number--
+      if( this.number === 0 ){
+          clearInterval(interval);
+      }
+    }, 1000);
+  },
+  watch: {
+    inputTest(input) { // 검증하고자 하는 데이터명으로 함수명을 만듦
+      if (input == 3) {
+        alert('3333');
+        this.inputTest = '';
+      }
     }
   },
   methods: { // 함수를 설정하는 영역
@@ -50,7 +85,6 @@ export default {
       this.modalFlg = true;
       this.productNum = i;
     },
-
   },
   components: { // 컴포넌트 정의
     Navi: Navi,
