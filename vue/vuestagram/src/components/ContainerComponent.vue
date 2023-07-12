@@ -20,10 +20,11 @@
     </div>
 
     <!-- 글 작성 -->
-    <div  v-if="$store.state.tabFlg === 2">
+    <div v-if="$store.state.tabFlg === 2">
         <div class="upload-img" :class="$store.state.filterClass" :style="{ backgroundImage : `url(${$store.state.imgUrl})`}"></div>
         <div>
-            <textarea class="write-box" name="content" id="content" placeholder="글 입력"></textarea>
+            <textarea class="write-box" name="content" id="content" placeholder="글 입력" @input="$store.commit('changeContent', $event.target.value)"></textarea>
+            <!-- inupt 이벤트보다 dom 사용하는 편이 리소스 관리 측면에서 더 좋음 -->
         </div>
     </div>
 </template>

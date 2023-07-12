@@ -15,6 +15,11 @@
         v-if="$store.state.tabFlg === 1"
         @click="$store.commit('chageTabFlg', 2)"
       >다음</li>
+      <li
+      class="header-button header-button-right"
+        v-if="$store.state.tabFlg === 2"
+        @click="$store.dispatch('writeContent')"
+      >작성</li>
     </ul>
   </div>
 
@@ -25,7 +30,7 @@
   <div class="footer">
     <div class="footer-button-store" v-if="$store.state.tabFlg === 0">
       <label for="file" class="label-store">+</label>
-      <input 
+      <input
         @change="updateImg" 
         accept="image/*" type="file" id="file" class="input-file"
       >
@@ -49,8 +54,9 @@ export default {
     updateImg(e) {
       let file = e.target.files;
       let imgUrl = URL.createObjectURL(file[0]);
-      this.$store.commit('changeImgUrl', imgUrl)
-      this.$store.commit('chageTabFlg', 1)
+      this.$store.commit('changeImgUrl', imgUrl);
+      this.$store.commit('changeImgFile', file[0]);
+      this.$store.commit('chageTabFlg', 1);
     }
   }
 }
