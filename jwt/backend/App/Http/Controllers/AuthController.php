@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Lib\JWT;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use LDAP\Result;
 
 class AuthController extends Controller
 {
@@ -48,11 +49,16 @@ class AuthController extends Controller
             'msg'     => 'OK'
         ];
         $status = 200;
+
+        $result = $this->obj_jwt->chkToken($token);
         
-        if ( (!$this->obj_jwt->chkToken($token)) ) {
+        if ( is_array($result) ) {
             $res = [
-                'errflg'  => '1',
-                'msg'     => 'FAIL'
+                'errflg'         => '1',
+                'error_info'     => [
+                    'code'  => $result['code'],
+                    'mgs'   => $result['mgs']
+                ]
             ];
             $status = 401;
         }
